@@ -1,7 +1,5 @@
 package com.squad55.athena.entities;
 
-import java.util.Objects;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,79 +7,60 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.beans.factory.annotation.Value;
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "tb_user")
 public class User {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@NotBlank(message = "Email may not be null")
-	private String email;
-	@NotBlank(message = "Password may not be null")
-	private String password;
-	
-	@NotBlank
-	private Boolean loggedIn;
-	
-	public User() {
-	}
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+    private Long id;
+    private @NotBlank String email;
+    private @NotBlank String password;
+    
+    
+    private boolean loggedIn;
 
+    public User() {
+    }
 
-	public User(Long id, @NotBlank(message = "Email may not be null") String email,
-			@NotBlank(message = "Password may not be null") String password, @NotBlank Boolean loggedIn) {
-		super();
-		this.id = id;
-		this.email = email;
-		this.password = password;
-		this.loggedIn = loggedIn;
-	}
+    public User(@NotBlank String email, @NotBlank String password) {
+        this.email = email;
+        this.password = password;
+        this.loggedIn = false;
+    }
 
+    public long getId() {
+        return id;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
+    }
 
-
-	public Boolean isLoggedIn() {
-		return loggedIn;
-	}
-
-
-	public void setLoggedIn(Boolean loggedIn) {
-		this.loggedIn = loggedIn;
-	}
-
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, email, loggedIn, password);
-	}
-
-
-	@Override
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
@@ -90,17 +69,18 @@ public class User {
                 Objects.equals(password, user.password);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, email, password, loggedIn);
+    }
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", password=" + password + ", loggedIn=" + loggedIn + "]";
-	}
-	
-	
-	
-	
-	
-	
-	
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", loggedIn=" + loggedIn +
+                '}';
+    }
 }

@@ -1,8 +1,22 @@
 package com.squad55.athena.entities;
 
-public class RegistrationPK {
+import java.io.Serializable;
 
+import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Embeddable
+public class RegistrationPK implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@ManyToOne
+	@JoinColumn(name = "course_id")
 	private Course course;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
 	private User user;
 	
 	public RegistrationPK() {

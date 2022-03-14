@@ -1,7 +1,14 @@
 package com.squad55.athena.entities;
 
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tb_registration")
 public class Registration {
 	
+	@EmbeddedId
 	private RegistrationPK id = new RegistrationPK();
 	
 	private String date;

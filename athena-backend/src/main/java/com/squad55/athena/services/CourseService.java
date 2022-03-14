@@ -23,5 +23,13 @@ public class CourseService {
 		Page<CourseDTO> page = result.map(x -> new CourseDTO(x));
 		return page;
 	}
+	
+	@Transactional(readOnly = true)
+	public CourseDTO findById(Long id) {
+		Course result = repository.findById(id).get();
+		CourseDTO dto = new CourseDTO(result);
+		return dto;
+	}
+
 
 }

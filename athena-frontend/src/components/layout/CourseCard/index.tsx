@@ -8,12 +8,12 @@ function CourseCard() {
     }
     return ( 
         <>
-            <div className="card w-100" >
+            <div className="card w-100 text-ce" >
                 <img src={course.image} className="card-img-top" alt={course.name}/>
                 <div className="card-body">
                     <h5 className="card-title">{course.name}  {`[${course.duration} Horas]`}</h5>
                     <p className="card-text">{course.description}</p>
-                    <a href="#" className="btn btn-primary">Começar</a>
+                    <a href="#" className="btn btn-primary w-100">Começar</a>
                 </div>
             </div>
             
